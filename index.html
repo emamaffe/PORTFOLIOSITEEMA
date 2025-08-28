@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Emanuel Maffettone — Data Analyst & AI Prompt Engineer</title>
+  <meta name="description" content="Portfolio di Emanuel Maffettone: Data Analyst Specialist, AI Prompt Engineer, dashboard dinamiche, BI, Python, SQL, Vertex AI.">
+  <meta name="author" content="Emanuel Maffettone">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0f1220;
+      --bg-soft: #151933;
+      --text: #e8ebf7;
+      --muted: #a9b0c7;
+      --card: #171a2e;
+      --accent: #6c8cff;
+      --accent-2: #ff8b6b;
+      --accent-3: #6bffd0;
+      --ring: rgba(108,140,255,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-lg: 20px;
+      --container: 1200px;
+    }
+    [data-theme="light"]{
+      --bg: #f7f8fe;
+      --bg-soft: #ffffff;
+      --text: #16192a;
+      --muted: #475071;
+      --card: #ffffff;
+      --accent: #3a5bff;
+      --accent-2: #ff6b4a;
+      --accent-3: #00c7a5;
+      --ring: rgba(58,91,255,.25);
+      --shadow: 0 10px 30px rgba(17, 23, 58, .12);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--container);margin:0 auto;padding:0 20px}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:linear-gradient(135deg, var(--accent), var(--accent-2));color:white;font-weight:600;font-size:12px;letter-spacing:.3px;text-transform:uppercase;box-shadow:var(--shadow)}
+    .btn{display:inline-flex;align-items:center;gap:10px;border:none;cursor:pointer;padding:12px 18px;border-radius:12px;font-weight:600;transition:.2s all;background:var(--accent);color:#fff;box-shadow:0 8px 20px var(--ring)}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 12px 26px var(--ring)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--text)}
+    .btn.ghost:hover{border-color:var(--accent)}
+    header.site{position:sticky;top:0;z-index:50;background:rgba(0,0,0,0);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:white;font-weight:800;box-shadow:var(--shadow)}
+    .logo span{font-family:Montserrat,Inter,sans-serif;font-weight:700;letter-spacing:.3px}
+    .menu{display:flex;gap:18px;align-items:center}
+    .menu a{padding:9px 12px;border-radius:10px;color:var(--muted);font-weight:600}
+    .menu a:hover,.menu a.active{color:var(--text);background:rgba(255,255,255,.06)}
+    .theme-toggle{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--text);border-radius:10px;padding:8px 12px;cursor:pointer}
+    .hero{padding:72px 0 30px}
+    .hero-grid{display:grid;grid-template-columns:1.4fr .9fr;gap:34px}
+    .hero-card{background:linear-gradient(155deg,var(--bg-soft),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow)}
+    h1{font-family:Montserrat,Inter,sans-serif;font-size:38px;line-height:1.1;margin:14px 0 10px}
+    .subtitle{color:var(--muted);font-size:18px;margin:0 0 16px}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 22px}
+    .chip{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);font-weight:600;color:var(--text);font-size:12px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .profile{border-radius:18px;overflow:hidden;height:100%;min-height:260px;background:
+      radial-gradient(1200px 500px at -20% -20%,rgba(108,140,255,.25),transparent 60%),
+      radial-gradient(900px 400px at 120% 120%,rgba(255,139,107,.2),transparent 60%),
+      var(--card);
+      border:1px solid rgba(255,255,255,.08);
+      display:grid;place-items:center}
+    .profile-inner{padding:22px;text-align:center}
+    .profile h3{margin:6px 0 6px}
+    .profile p{margin:0;color:var(--muted)}
+    section{padding:40px 0}
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .section-title h2{font-family:Montserrat,Inter,sans-serif;margin:0;font-size:28px}
+    .grid{display:grid;gap:16px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .skill{padding:12px 14px;border-radius:12px;background:linear-gradient(155deg,var(--bg-soft),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08)}
+    .skill-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-weight:600}
+    .bar{height:8px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+    .bar > span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+    .kpis{display:flex;gap:12px;flex-wrap:wrap}
+    .kpi{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);padding:10px 12px;border-radius:12px;color:var(--muted);font-weight:600}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}
+    .filter{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--text);cursor:pointer}
+    .filter.active,.filter:hover{border-color:var(--accent);color:var(--accent)}
+    .search{display:flex;gap:10px}
+    .search input{flex:1;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:var(--bg-soft);color:var(--text)}
+    .project{display:flex;flex-direction:column;gap:10px}
+    .thumb{height:150px;border-radius:12px;background-size:cover;background-position:center;border:1px solid rgba(255,255,255,.08)}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+    .timeline{position:relative;padding-left:20px}
+    .timeline::before{content:"";position:absolute;left:6px;top:0;bottom:0;width:2px;background:linear-gradient(var(--accent), var(--accent-2))}
+    .item{position:relative;margin:14px 0;padding:12px 12px 12px 16px;border-radius:12px;background:linear-gradient(155deg,var(--bg-soft),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08)}
+    .item::before{content:"";position:absolute;left:-1px;top:18px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(108,140,255,.18)}
+    .list{display:grid;gap:10px}
+    .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+    form .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:var(--bg-soft);color:var(--text)}
+    textarea{min-height:120px;resize:vertical}
+    footer{padding:18px 0;border-top:1px solid rgba(255,255,255,.08);margin-top:30px;color:var(--muted)}
+    .muted{color:var(--muted)}
+    .hide{display:none !important}
+    .in-view{animation:rise .6s ease-out both}
+    @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    @media (max-width: 980px){
+      .hero-grid, .grid.cols-3, .grid.cols-2, .contact-grid, form .row{grid-template-columns:1fr}
+      header.site{position:sticky}
+      .menu{display:none}
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Emanuel Maffettone",
+    "jobTitle":"Data Analyst Specialist & AI Prompt Engineer",
+    "address":{"@type":"PostalAddress","addressLocality":"Foggia","addressRegion":"FG","addressCountry":"IT"},
+    "email":"mailto:emafettone@gmail.com",
+    "telephone":"+39-3886478185",
+    "sameAs":["https://www.linkedin.com/in/emanuel-maffettone"]
+  }
+  </script>
+</head>
+<body data-theme="dark">
+  <header class="site">
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-mark">EM</div>
+        <span>Emanuel Maffettone</span>
+      </div>
+      <nav class="menu">
+        <a href="#home" class="active">Home</a>
+        <a href="#chi-sono">Chi sono</a>
+        <a href="#competenze">Competenze</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#esperienze">Esperienze</a>
+        <a href="#certificazioni">Certificazioni</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Cambia tema">Tema</button>
+    </div>
+  </header>
+
+  <main id="home" class="hero">
+    <div class="container hero-grid">
+      <section class="hero-card in-view" aria-labelledby="intro-title">
+        <span class="badge">Disponibile per lavoro da remoto</span>
+        <h1 id="intro-title">Data Analyst Specialist & AI Prompt Engineer</h1>
+        <p class="subtitle">Trasformo dati in decisioni con dashboard dinamiche, modelli AI e processi più efficienti.</p>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">Power BI / Excel BI</span>
+          <span class="chip">MySQL</span>
+          <span class="chip">Vertex AI</span>
+          <span class="chip">Prompt Engineering</span>
+        </div>
+        <div class="cta">
+          <a href="#portfolio" class="btn">Esplora il portfolio</a>
+          <a href="#contatti" class="btn ghost">Contattami</a>
+        </div>
+        <div class="kpis" style="margin-top:14px">
+          <div class="kpi">Foggia (FG), Italia</div>
+          <div class="kpi">Italiano C2</div>
+          <div class="kpi">Inglese B2+</div>
+        </div>
+      </section>
+      <aside class="profile in-view">
+        <div class="profile-inner">
+          <h3>Emanuel Maffettone</h3>
+          <p>Data Analyst | AI Prompt Engineer | Aspiring Fabric Engineer</p>
+          <div style="height:16px"></div>
+          <a class="btn ghost" href="#cv">Scarica CV</a>
+          <div style="height:12px"></div>
+          <p class="muted">“Dati chiari, azioni chiare.”</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <section id="chi-sono">
+    <div class="container">
+      <div class="section-title">
+        <h2>Chi sono</h2>
+      </div>
+      <div class="grid cols-2">
+        <div class="card in-view">
+          <p>Sono uno specialista in analisi dei dati e un ingegnere di intelligenza artificiale con due anni di esperienza in AI e business intelligence. Ho elaborato grandi quantità di dati e creato dashboard dinamiche e potenti. Sto sviluppando un piccolo chatbot personale per l'analisi dei dati. Ho esperienza nel settore sanitario e personalizzo le dashboard in base alle esigenze del cliente.</p>
+          <div class="kpis" style="margin-top:10px">
+            <div class="kpi">Data storytelling</div>
+            <div class="kpi">Automazione</div>
+            <div class="kpi">Pulizia dati</div>
+            <div class="kpi">Decision support</div>
+          </div>
+        </div>
+        <div class="card in-view">
+          <ul class="list" style="margin:0;padding-left:18px">
+            <li><strong>Formazione:</strong> Master in Data Analysis & Data Science (Epicode Institute, 30 Set – 7 Apr)</li>
+            <li><strong>Località:</strong> Foggia, Puglia, Italia</li>
+            <li><strong>Email:</strong> <a href="mailto:emafettone@gmail.com">emafettone@gmail.com</a></li>
+            <li><strong>Telefono:</strong> <a href="tel:+393886478185">+39 388 647 8185</a></li>
+            <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/emanuel-maffettone" target="_blank" rel="noopener">/in/emanuel-maffettone</a></li>
+            <li><strong>Lingue:</strong> Italiano (100%), Inglese (85%)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="competenze">
+    <div class="container">
+      <div class="section-title">
+        <h2>Competenze</h2>
+      </div>
+      <div class="skills">
+        <div class="skill in-view">
+          <div class="skill-head"><span>Python</span><span>90%</span></div>
+          <div class="bar"><span style="width:90%"></span></div>
+        </div>
+        <div class="skill in-view">
+          <div class="skill-head"><span>Excel BI / Power BI</span><span>87%</span></div>
+          <div class="bar"><span style="width:87%"></span></div>
+        </div>
+        <div class="skill in-view">
+          <div class="skill-head"><span>G Suite per analisi</span><span>95%</span></div>
+          <div class="bar"><span style="width:95%"></span></div>
+        </div>
+        <div class="skill in-view">
+          <div class="skill-head"><span>MySQL / SQL Workbench</span><span>84%</span></div>
+          <div class="bar"><span style="width:84%"></span></div>
+        </div>
+        <div class="skill in-view">
+          <div class="skill-head"><span>AI & Prompt Engineering</span><span>92%</span></div>
+          <div class="bar"><span style="width:92%"></span></div>
+        </div>
+        <div class="skill in-view">
+          <div class="skill-head"><span>Adattabilità</span><span>90%</span></div>
+          <div class="bar"><span style="width:90%"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="container">
+      <div class="section-title">
+        <h2>Portfolio</h2>
+        <div class="search">
+          <input id="searchInput" type="search" placeholder="Cerca per titolo, tag o descrizione..." aria-label="Cerca nel portfolio">
+          <button class="btn ghost" id="clearSearch">Pulisci</button>
+        </div>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="grid cols-3" id="projectsGrid"></div>
+
+      <div style="height:18px"></div>
+      <div class="card in-view">
+        <h3 style="margin-top:0">Post e contenuti LinkedIn</h3>
+        <p class="muted">Incorpora qui i tuoi post LinkedIn più rilevanti: apri il post su LinkedIn, usa “Altro” → “Incorpora post”, copia il codice e incollalo qui sotto. In alternativa, aggiungi semplicemente il link del post.</p>
+        <div id="linkedinEmbeds" class="grid cols-2">
+          <!-- Incolla qui i codici di incorporamento di LinkedIn -->
+          <!-- Esempio link semplice: -->
+          <!-- <a class="card" href="https://www.linkedin.com/posts/..." target="_blank" rel="noopener">Vai al post su LinkedIn</a> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="esperienze">
+    <div class="container">
+      <div class="section-title">
+        <h2>Esperienze</h2>
+      </div>
+      <div class="timeline">
+        <div class="item in-view">
+          <strong>Data Analyst Specialist & AI Prompt Engineer — Lineacomputer (Zucchetti Partner)</strong>
+          <div class="muted">Giugno 2025 — Presente</div>
+          <ul class="list" style="margin:10px 0 0">
+            <li>Analisi dati con insight fruibili e report statistici avanzati.</li>
+            <li>Progettazione e manutenzione di dashboard a supporto decisionale.</li>
+            <li>Modeling e data cleaning con Python e MySQL.</li>
+            <li>Integrazione AI per ottimizzazione processi e rapid engineering.</li>
+            <li>Collaborazione in loco con clienti e personalizzazione soluzioni.</li>
+            <li>Sviluppo di un chatbot personale per analisi dati; prompt su Vertex AI.</li>
+          </ul>
+        </div>
+        <div class="item in-view">
+          <strong>Digital Facilitator & Data Entry — ASL Foggia (Sanità)</strong>
+          <div class="muted">Dicembre 2023 — Dicembre 2024</div>
+          <ul class="list" style="margin:10px 0 0">
+            <li>Inserimento dati a database aziendale.</li>
+            <li>Produzione di piccoli report di sintesi.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificazioni">
+    <div class="container">
+      <div class="section-title">
+        <h2>Certificazioni</h2>
+      </div>
+      <div class="grid cols-2">
+        <div class="card in-view">
+          <strong>Google Cloud — Introduction to Responsible AI</strong>
+          <div class="muted">Completion Badge</div>
+        </div>
+        <div class="card in-view">
+          <strong>Google Cloud — Introduction to Generative AI</strong>
+          <div class="muted">Completion Badge</div>
+        </div>
+        <div class="card in-view">
+          <strong>Google Cloud — Introduction to Large Language Models</strong>
+          <div class="muted">Completion Badge</div>
+        </div>
+        <div class="card in-view">
+          <strong>Google Cloud — Prompt Design in Vertex AI</strong>
+          <div class="muted">Skill Badge (Introductory)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cv">
+    <div class="container">
+      <div class="section-title">
+        <h2>Formazione e lingue</h2>
+      </div>
+      <div class="grid cols-2">
+        <div class="card in-view">
+          <h3 style="margin-top:0">Formazione</h3>
+          <ul class="list" style="margin-top:10px">
+            <li><strong>Epicode Institute:</strong> Master in Data Analysis & Data Science (30 Settembre – 7 Aprile)</li>
+          </ul>
+        </div>
+        <div class="card in-view">
+          <h3 style="margin-top:0">Lingue</h3>
+          <ul class="list" style="margin-top:10px">
+            <li><strong>Italiano:</strong> 100%</li>
+            <li><strong>Inglese:</strong> 85%</li>
+          </ul>
+        </div>
+      </div>
+      <div style="height:12px"></div>
+      <a class="btn" href="cv/Maffettone_CV.pdf" download>Scarica il mio CV (PDF)</a>
+    </div>
+  </section>
+
+  <section id="contatti">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contatti</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="card in-view">
+          <p><strong>Email:</strong> <a href="mailto:emafettone@gmail.com">emafettone@gmail.com</a></p>
+          <p><strong>Telefono:</strong> <a href="tel:+393886478185">+39 388 647 8185</a></p>
+          <p><strong>Località:</strong> Foggia (FG), Italia</p>
+          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/emanuel-maffettone" target="_blank" rel="noopener">/in/emanuel-maffettone</a></p>
+        </div>
+        <div class="card in-view">
+          <form id="contactForm" action="mailto:emafettone@gmail.com" method="post" enctype="text/plain">
+            <div class="row">
+              <div>
+                <label for="nome" class="muted">Nome</label>
+                <input id="nome" name="Nome" required />
+              </div>
+              <div>
+                <label for="email" class="muted">Email</label>
+                <input id="email" type="email" name="Email" required />
+              </div>
+            </div>
+            <div style="height:10px"></div>
+            <div>
+              <label for="messaggio" class="muted">Messaggio</label>
+              <textarea id="messaggio" name="Messaggio" required></textarea>
+            </div>
+            <div style="height:12px"></div>
+            <button class="btn" type="submit">Invia</button>
+            <p class="muted" style="margin-top:10px">Suggerimento: per un invio professionale, sostituisci l’attributo action con un endpoint di servizi come Formspree.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <span class="muted">site powered by maffettone emanuel</span>
+      <div class="kpis">
+        <div class="kpi">© <span id="year"></span> Emanuel Maffettone</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tema: dark/light toggle con salvataggio
+    const root = document.body;
+    const toggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme) root.setAttribute('data-theme', savedTheme);
+    toggle.addEventListener('click', () => {
+      const t = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', t); localStorage.setItem('theme', t);
+    });
+
+    // Anno footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Animazioni on-scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }});
+    }, {threshold:.12});
+    document.querySelectorAll('.card, .item, .skill').forEach(el => io.observe(el));
+
+    // Dati Portfolio (puoi modificarli/aggiungere)
+    const projects = [
+      {
+        title: "Chatbot personale per analisi dati",
+        category: "AI / LLM",
+        tags: ["AI", "LLM", "Prompt Engineering"],
+        description: "Sviluppo di un chatbot per esplorare dataset, generare insight e suggerire KPI.",
+        link: "#",
+        image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='360'><rect width='100%' height='100%' fill='%236c8cff'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='Inter' font-size='28'>Chatbot Analisi Dati</text></svg>"
+      },
+      {
+        title: "Dashboard dinamiche per Lineacomputer",
+        category: "Dashboard",
+        tags: ["Power BI", "Decision Support", "Python"],
+        description: "Progettazione e manutenzione di dashboard per insight fruibili e reporting avanzato.",
+        link: "#",
+        image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='360'><rect width='100%' height='100%' fill='%23ff8b6b'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='Inter' font-size='28'>Dashboard BI</text></svg>"
+      },
+      {
+        title: "Data cleaning e modeling con Python e MySQL",
+        category: "Data Analysis",
+        tags: ["Python", "MySQL", "ETL"],
+        description: "Pipeline per pulizia, trasformazione e modellazione dei dati a supporto decisionale.",
+        link: "#",
+        image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='360'><rect width='100%' height='100%' fill='%236bffd0'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%230f1220' font-family='Inter' font-size='28'>Data Pipelines</text></svg>"
+      },
+      {
+        title: "Reportistica ASL Foggia",
+        category: "Sanità",
+        tags: ["Healthcare", "Reporting", "Data Entry"],
+        description: "Inserimento dati su database e creazione di report sintetici su indicatori chiave.",
+        link: "#",
+        image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='360'><rect width='100%' height='100%' fill='%235b6bff'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='Inter' font-size='28'>Sanità</text></svg>"
+      },
+      {
+        title: "Prompt design su Vertex AI",
+        category: "AI / LLM",
+        tags: ["Vertex AI", "Prompt", "Automation"],
+        description: "Sperimentazione di prompt su Vertex AI per velocizzare task e migliorare l'accuratezza.",
+        link: "#",
+        image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='360'><rect width='100%' height='100%' fill='%23ff6b4a'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='Inter' font-size='28'>Vertex AI</text></svg>"
+      }
+    ];
+
+    // Filtri dinamici
+    const filterContainer = document.getElementById('filters');
+    const grid = document.getElementById('projectsGrid');
+    const categories = ["Tutto", ...Array.from(new Set(projects.map(p => p.category)))];
+
+    let state = { q: "", filter: "Tutto" };
+
+    function renderFilters(){
+      filterContainer.innerHTML = "";
+      categories.forEach(cat => {
+        const b = document.createElement('button');
+        b.className = 'filter' + (state.filter===cat ? ' active':'');
+        b.textContent = cat;
+        b.addEventListener('click', ()=>{
+          state.filter = cat;
+          document.querySelectorAll('.filter').forEach(f=>f.classList.remove('active'));
+          b.classList.add('active');
+          renderProjects();
+        });
+        filterContainer.appendChild(b);
+      });
+    }
+
+    function renderProjects(){
+      const { q, filter } = state;
+      const query = q.trim().toLowerCase();
+      const items = projects.filter(p => {
+        const text = (p.title + " " + p.description + " " + p.tags.join(" ") + " " + p.category).toLowerCase();
+        const matchesQ = !query || text.includes(query);
+        const matchesF = filter === "Tutto" || p.category === filter;
+        return matchesQ && matchesF;
+      });
+      grid.innerHTML = "";
+      if(!items.length){
+        grid.innerHTML = `<div class="card"><strong>Nessun risultato</strong><p class="muted" style="margin:6px 0 0">Prova a cambiare i filtri o la ricerca.</p></div>`;
+        return;
+      }
+      items.forEach(p => {
+        const card = document.createElement('article');
+        card.className = 'card project';
+        card.innerHTML = `
+          <div class="thumb" role="img" aria-label="${p.title}" style="background-image:url('${p.image}')"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <strong>${p.title}</strong>
+            <span class="chip">${p.category}</span>
+          </div>
+          <p class="muted" style="margin:0">${p.description}</p>
+          <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn ghost" href="${p.link}" target="_blank" rel="noopener">Dettagli</a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    renderFilters(); renderProjects();
+
+    // Ricerca
+    const search = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearSearch');
+    search.addEventListener('input', (e)=>{ state.q = e.target.value; renderProjects(); });
+    clearBtn.addEventListener('click', ()=>{ state.q = ""; search.value = ""; renderProjects(); });
+
+    // Navigazione attiva su scroll
+    const sections = Array.from(document.querySelectorAll('main[id], section[id]'));
+    const menuLinks = document.querySelectorAll('.menu a');
+    const spy = new IntersectionObserver((entries)=>{
+      entries.forEach(ent=>{
+        if(ent.isIntersecting){
+          menuLinks.forEach(a=>a.classList.remove('active'));
+          const link = document.querySelector(`.menu a[href="#${ent.target.id}"]`);
+          if(link) link.classList.add('active');
+        }
+      });
+    }, {threshold:.4});
+    sections.forEach(s=>spy.observe(s));
+  </script>
+</body>
+</html>
